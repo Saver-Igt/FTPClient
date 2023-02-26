@@ -23,12 +23,14 @@ public class StudentService {
         this.filePath = filePath;
         this.fileName = getFileName(filePath);
     }
-    public void setStudents() throws IOException{
+    public URLConnection connection() throws IOException{
         ftpUrl = String.format(ftpUrl, login, pass, host, filePath);
 
         URL url = new URL(ftpUrl);
-        URLConnection urlConnection = url.openConnection();
-        InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
+        return url.openConnection();
+    }
+    public void setStudents() throws IOException{
+        InputStreamReader inputStreamReader = new InputStreamReader(connection().getInputStream());
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         String line;

@@ -9,7 +9,11 @@ public class JsonService {
     }
     public String getNameFromJson(String line){
         line = line.split("\"name\": ")[1];
-        return line.replace("\"", "");
+        line = line.replace("\"", "");
+        line = line.replace("}", "");
+        line = line.replace(",", "");
+        line = line.replaceAll("\\s", "");
+        return line;
     }
    public void addStudent(int id, String name){
        this.jsonString += "\n\t\t{\n\t\t\t\"id\": " +
